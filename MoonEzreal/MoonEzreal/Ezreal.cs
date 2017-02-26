@@ -527,8 +527,7 @@
             {
                 Q.PredCast(target);
             }
-
-            if (MenuInit.ComboW && W.IsReady() && target.IsValidTarget(W.Range))
+            else if (MenuInit.ComboW && W.IsReady() && target.IsValidTarget(W.Range))
             {
                 W.PredCast(target, false);
             }
@@ -545,8 +544,7 @@
             {
                 Q.PredCast(target);
             }
-
-            if (MenuInit.HarassW && W.IsReady() && target.IsValidTarget(W.Range))
+            else if(MenuInit.HarassW && W.IsReady() && target.IsValidTarget(W.Range))
             {
                 W.PredCast(target, false);
             }
