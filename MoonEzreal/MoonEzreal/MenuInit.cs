@@ -15,7 +15,7 @@
         {
             mainMenu = MainMenu.AddMenu("Moon" + Player.Instance.ChampionName, "Moon" + Player.Instance.ChampionName);
             {
-                mainMenu.AddGroupLabel("My GitHub: https://github.com/NightMoon032/EloBuddy");
+                mainMenu.AddGroupLabel("My GitHub: https://github.com/NightMoon032/MoonSeries");
                 mainMenu.AddGroupLabel("If you have Feedback pls post to my topic");
                 mainMenu.AddGroupLabel("---------------------");
                 mainMenu.AddGroupLabel("Credit: NightMoon");
