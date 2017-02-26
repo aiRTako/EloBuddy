@@ -46,9 +46,5 @@
         internal static float RMana { get; set; }
         internal static float PlayerMana => Player.Instance.Mana;
         internal static float PlayerManaPercent => Player.Instance.ManaPercent;
-
-        //Status
-        internal static bool isQReady => Player.Instance.Buffs.Any(x => x.Name.ToLower() == "asheqcastready");
-        internal static bool isQActive => Player.Instance.Buffs.Any(x => x.Name.ToLower() == "asheqattack");
     }
 }
