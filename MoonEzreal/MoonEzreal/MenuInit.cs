@@ -15,6 +15,9 @@
         {
             mainMenu = MainMenu.AddMenu("Moon" + Player.Instance.ChampionName, "Moon" + Player.Instance.ChampionName);
             {
+                mainMenu.AddGroupLabel("pls setting the Orbwalker");
+                mainMenu.AddGroupLabel("Orbwalker -> Advanced -> Update event listening -> Enabled On Update(more fast)");
+                mainMenu.AddGroupLabel("--------------------");
                 mainMenu.AddGroupLabel("My GitHub: https://github.com/NightMoon032/MoonSeries");
                 mainMenu.AddGroupLabel("If you have Feedback pls post to my topic");
                 mainMenu.AddGroupLabel("---------------------");
@@ -62,20 +65,20 @@
                 clearMenu.AddLine("LaneClear W");
                 clearMenu.AddBool("LaneClearW", "Use W");
                 clearMenu.AddLine("LaneClearMana");
-                clearMenu.AddSlider("LaneClearMP", "When Player Mana Percent >= x%, Enabled LaneClear Spell");
+                clearMenu.AddSlider("LaneClearMP", "When Player Mana Percent >= x%, Enabled LaneClear Spell", 60);
 
                 clearMenu.AddSeparator();
 
                 clearMenu.AddText("JungleClear Settings");
                 clearMenu.AddLine("JungleClear Q");
                 clearMenu.AddBool("JungleClearQ", "Use Q");
-                clearMenu.AddSlider("JungleClearMP", "When Player Mana Percent >= x%, Enabled JungleClear Spell");
+                clearMenu.AddSlider("JungleClearMP", "When Player Mana Percent >= x%, Enabled JungleClear Spell", 30);
 
                 clearMenu.AddSeparator();
 
                 clearMenu.AddLine("LastHit Q");
                 clearMenu.AddBool("LastHitQ", "Use Q");
-                clearMenu.AddSlider("LastHitMP", "When Player Mana Percent >= x%, Enabled LastHit Spell");
+                clearMenu.AddSlider("LastHitMP", "When Player Mana Percent >= x%, Enabled LastHit Spell", 50);
 
                 ManaManager.AddSpellFarm(clearMenu);
             }
@@ -103,7 +106,7 @@
                 miscMenu.AddText("R");
                 miscMenu.AddSlider("MinRRange", "Min R Cast Range Settings(Global): ", 800, 0, 1500);
                 miscMenu.AddSlider("MaxRRange", "Max R Cast Range Settings(Global): ", 3000, 1500, 1500);
-                miscMenu.AddKey("SemiR", "Semi Cast R Key", KeyBind.BindTypes.PressToggle, 'T');
+                miscMenu.AddKey("SemiR", "Semi Cast R Key", KeyBind.BindTypes.HoldActive, 'T');
 
                 miscMenu.AddSeparator();
 

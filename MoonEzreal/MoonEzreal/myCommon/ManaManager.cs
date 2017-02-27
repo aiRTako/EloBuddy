@@ -17,7 +17,7 @@
 
         internal static bool HasEnoughMana(int manaPercent)
         {
-            return Player.Instance.ManaPercent >= manaPercent && !Player.Instance.IsUnderEnemyturret();
+            return Player.Instance.ManaPercent >= manaPercent;// && !Player.Instance.IsUnderEnemyturret();
         }
 
         internal static void AddSpellFarm(Menu mainMenu)

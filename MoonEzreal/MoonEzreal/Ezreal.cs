@@ -362,8 +362,10 @@
 
         private static void Farm()
         {
-            if (ManaManager.SpellHarass && ManaManager.HasEnoughMana(MenuInit.HarassMP) && 
-                MenuInit.HarassW && W.IsReady() && Player.Instance.CountEnemyChampionsInRange(W.Range) > 0)
+            var range = (MenuInit.HarassQ && Q.IsReady()) ? Q.Range : (MenuInit.HarassW && W.IsReady()) ? W.Range : 0;
+
+            if (ManaManager.SpellHarass && ManaManager.HasEnoughMana(MenuInit.HarassMP) &&
+                range > 0 && Player.Instance.CountEnemyChampionsInRange(range) > 0)
             {
                 Harass();
             }
