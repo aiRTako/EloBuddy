@@ -126,9 +126,9 @@
                 miscMenu.AddBool("AntiGapcloserW", "Anti Gapcloser");
                 miscMenu.AddBool("InterruptW", "Interrupt Danger Spell");
 
-                miscMenu.AddSeparator();
-                miscMenu.AddText("E");
-                miscMenu.AddBool("DodgeE", "Dodge some Spell");
+                //miscMenu.AddSeparator();
+                //miscMenu.AddText("E");
+                //miscMenu.AddBool("DodgeE", "Dodge some Spell");
 
                 miscMenu.AddSeparator();
                 miscMenu.AddText("Animation");
@@ -193,7 +193,7 @@
         internal static bool AntiGapcloserW => miscMenu.GetBool("AntiGapcloserW");
         internal static bool InterruptW => miscMenu.GetBool("InterruptW");
 
-        internal static bool DodgeE => miscMenu.GetBool("DodgeE");
+        //internal static bool DodgeE => miscMenu.GetBool("DodgeE");
 
         internal static bool manualCancel => miscMenu.GetBool("manualCancel");
         internal static bool manualCancelPing => miscMenu.GetBool("manualCancelPing");
