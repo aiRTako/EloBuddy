@@ -306,7 +306,12 @@
                 Circle.Draw(Color.Red, E.Range, Player.Instance);
             }
 
-            if (MenuInit.DrawR && R.Level > 0)
+            if (MenuInit.DrawR1 && Player.GetSpell(SpellSlot.R).IsReady)
+            {
+                Circle.Draw(Color.Orange, R1.Range, Player.Instance);
+            }
+
+            if (MenuInit.DrawR && Player.GetSpell(SpellSlot.R).Level > 0)
             {
                 var MePos = Drawing.WorldToScreen(Player.Instance.Position);
 
@@ -314,7 +319,7 @@
                     "Combo R1:" + (MenuInit.ComboR1 ? "On" : "Off"));
             }
 
-            if (MenuInit.DrawBurst && R.Level > 0)
+            if (MenuInit.DrawBurst && Player.GetSpell(SpellSlot.R).Level > 0)
             {
                 var MePos = Drawing.WorldToScreen(Player.Instance.Position);
                 string str;

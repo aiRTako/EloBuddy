@@ -136,11 +136,21 @@
                 miscMenu.AddBool("manualCancelPing", "Cancel Animation Calculate Ping?");
             }
 
+            eMenu = mainMenu.AddSubMenu("Evade", "Evade");
+            {  
+                //TODO: 
+                //1.use E Evade Logic
+                //2.use E Dodge the unit spell(need evade?)
+                //3.evade Logic need create the new Menu(not in the miscMenu)
+                eMenu.AddLabel("TODO");
+            }
+
             drawMenu = mainMenu.AddSubMenu("Drawings", "Drawings");
             {
                 drawMenu.AddText("Spell Range"); 
                 drawMenu.AddBool("DrawW", "Draw W Range", false);
                 drawMenu.AddBool("DrawE", "Draw E Range", false);
+                drawMenu.AddBool("DrawR1", "Draw R1 Range", false);
                 drawMenu.AddBool("DrawR", "Draw R Status");
                 drawMenu.AddBool("DrawBurst", "Draw R Status");
                 ManaManager.AddDrawFarm(drawMenu);
@@ -200,6 +210,7 @@
 
         internal static bool DrawW => drawMenu.GetBool("DrawW");
         internal static bool DrawE => drawMenu.GetBool("DrawE");
+        internal static bool DrawR1 => drawMenu.GetBool("DrawR1");
         internal static bool DrawR => drawMenu.GetBool("DrawR");
         internal static bool DrawBurst => drawMenu.GetBool("DrawBurst");
     }
