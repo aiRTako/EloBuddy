@@ -3,8 +3,12 @@
     using myCommon;
 
     using EloBuddy;
+    using EloBuddy.SDK;
     using EloBuddy.SDK.Menu;
     using EloBuddy.SDK.Menu.Values;
+
+    using System;
+    using System.Linq;
 
     internal class MenuInit : Logic
     {
@@ -143,6 +147,51 @@
                 //2.use E Dodge the unit spell(need evade?)
                 //3.evade Logic need create the new Menu(not in the miscMenu)
                 eMenu.AddLabel("TODO");
+
+                //eMenu.AddText("Evade Opinion");
+                //eMenu.AddBool("evadeELogic", "Enabled Use E Dodge");
+
+                //if (EntityManager.Heroes.Enemies.Any())
+                //{
+                //    foreach (var target in EntityManager.Heroes.Enemies)
+                //    {
+                //        eMenu.AddText(target.ChampionName + " Skills");
+
+                //        //SelfAOE (not include the Karma E and?)
+
+                //        if (target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType != SpellDataTargetType.Self &&
+                //            target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                //        {
+                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.Q).SData.Name, 
+                //                target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType == SpellDataTargetType.Unit);
+                //        }
+
+                //        if (target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType != SpellDataTargetType.Self &&
+                //            target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                //        {
+                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType == SpellDataTargetType.Unit);
+                //        }
+
+                //        if (target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType != SpellDataTargetType.Self &&
+                //            target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                //        {
+                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType == SpellDataTargetType.Unit);
+                //        }
+
+                //        if (target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType != SpellDataTargetType.Self &&
+                //            target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                //        {
+                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.R).SData.Name,
+                //                target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType == SpellDataTargetType.Unit);
+                //        }
+                //    }
+                //}
             }
 
             drawMenu = mainMenu.AddSubMenu("Drawings", "Drawings");
@@ -203,10 +252,10 @@
         internal static bool AntiGapcloserW => miscMenu.GetBool("AntiGapcloserW");
         internal static bool InterruptW => miscMenu.GetBool("InterruptW");
 
-        //internal static bool DodgeE => miscMenu.GetBool("DodgeE");
-
         internal static bool manualCancel => miscMenu.GetBool("manualCancel");
         internal static bool manualCancelPing => miscMenu.GetBool("manualCancelPing");
+
+        //internal static bool evadeELogic => miscMenu.GetBool("evadeELogic");
 
         internal static bool DrawW => drawMenu.GetBool("DrawW");
         internal static bool DrawE => drawMenu.GetBool("DrawE");
