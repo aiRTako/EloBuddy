@@ -209,28 +209,28 @@
                 }
             }
 
-            //if (sender.IsEnemy && sender.Type == GameObjectType.AIHeroClient && MenuInit.evadeELogic && E.IsReady())
-            //{
-            //    EvadeLogic(sender as AIHeroClient, Args);
-            //}
+            if (sender.IsEnemy && sender.Type == GameObjectType.AIHeroClient && MenuInit.evadeELogic && E.IsReady())
+            {
+                EvadeLogic(sender as AIHeroClient, Args);
+            }
         }
 
-        //private static void EvadeLogic(AIHeroClient target, GameObjectProcessSpellCastEventArgs Args)
-        //{
-        //    if (eMenu[target.ChampionName + "Skill" + Args.SData.Name] == null || !eMenu.GetBool(target.ChampionName + "Skill" + Args.SData.Name))
-        //    {
-        //        return;
-        //    }
+        private static void EvadeLogic(AIHeroClient target, GameObjectProcessSpellCastEventArgs Args)
+        {
+            if (eMenu[target.ChampionName + "Skill" + Args.SData.Name] == null || !eMenu.GetBool(target.ChampionName + "Skill" + Args.SData.Name))
+            {
+                return;
+            }
 
-        //    if (Args.SData.TargettingType == SpellDataTargetType.Unit && Args.Target != null && Args.Target.IsMe)
-        //    {
-        //        Player.Instance.Spellbook.CastSpell(SpellSlot.E, Game.CursorPos);
-        //    }
-        //    else if (Args.SData.TargettingType != SpellDataTargetType.Unit)
-        //    {
-        //        //Use the Evade Logic?
-        //    }
-        //}
+            if (Args.SData.TargettingType == SpellDataTargetType.Unit && Args.Target != null && Args.Target.IsMe)
+            {
+                Player.Instance.Spellbook.CastSpell(SpellSlot.E, Game.CursorPos);
+            }
+            //else if (Args.SData.TargettingType != SpellDataTargetType.Unit)
+            //{
+            //    //Use the Evade Logic?
+            //}
+        }
 
         private static void OnSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs Args)
         {

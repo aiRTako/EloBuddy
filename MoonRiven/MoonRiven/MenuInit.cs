@@ -7,7 +7,6 @@
     using EloBuddy.SDK.Menu;
     using EloBuddy.SDK.Menu.Values;
 
-    using System;
     using System.Linq;
 
     internal class MenuInit : Logic
@@ -130,10 +129,6 @@
                 miscMenu.AddBool("AntiGapcloserW", "Anti Gapcloser");
                 miscMenu.AddBool("InterruptW", "Interrupt Danger Spell");
 
-                //miscMenu.AddSeparator();
-                //miscMenu.AddText("E");
-                //miscMenu.AddBool("DodgeE", "Dodge some Spell");
-
                 miscMenu.AddSeparator();
                 miscMenu.AddText("Animation");
                 miscMenu.AddBool("manualCancel", "Semi Cancel Animation");
@@ -143,55 +138,78 @@
             eMenu = mainMenu.AddSubMenu("Evade", "Evade");
             {  
                 //TODO: 
-                //1.use E Evade Logic
-                //2.use E Dodge the unit spell(need evade?)
-                //3.evade Logic need create the new Menu(not in the miscMenu)
-                eMenu.AddLabel("TODO");
+                //1.Add dodge not unit Spell
 
-                //eMenu.AddText("Evade Opinion");
-                //eMenu.AddBool("evadeELogic", "Enabled Use E Dodge");
+                eMenu.AddText("Evade Opinion");
+                eMenu.AddBool("evadeELogic", "Enabled Use E Dodge");
 
-                //if (EntityManager.Heroes.Enemies.Any())
-                //{
-                //    foreach (var target in EntityManager.Heroes.Enemies)
-                //    {
-                //        eMenu.AddText(target.ChampionName + " Skills");
+                if (EntityManager.Heroes.Enemies.Any())
+                {
+                    foreach (var target in EntityManager.Heroes.Enemies)
+                    {
+                        eMenu.AddText(target.ChampionName + " Skills");
 
-                //        //SelfAOE (not include the Karma E and?)
+                        #region
+                        //SelfAOE (not include the Karma E and?)
 
-                //        if (target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType != SpellDataTargetType.Self &&
-                //            target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
-                //        {
-                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.Q).SData.Name, 
-                //                target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType == SpellDataTargetType.Unit);
-                //        }
+                        //if (target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType != SpellDataTargetType.Self &&
+                        //    target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                        //{
+                        //    eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType == SpellDataTargetType.Unit);
+                        //}
 
-                //        if (target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType != SpellDataTargetType.Self &&
-                //            target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
-                //        {
-                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType == SpellDataTargetType.Unit);
-                //        }
+                        //if (target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType != SpellDataTargetType.Self &&
+                        //    target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                        //{
+                        //    eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType == SpellDataTargetType.Unit);
+                        //}
 
-                //        if (target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType != SpellDataTargetType.Self &&
-                //            target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
-                //        {
-                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType == SpellDataTargetType.Unit);
-                //        }
+                        //if (target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType != SpellDataTargetType.Self &&
+                        //    target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                        //{
+                        //    eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType == SpellDataTargetType.Unit);
+                        //}
 
-                //        if (target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType != SpellDataTargetType.Self &&
-                //            target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
-                //        {
-                //            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.R).SData.Name,
-                //                target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType == SpellDataTargetType.Unit);
-                //        }
-                //    }
-                //}
+                        //if (target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType != SpellDataTargetType.Self &&
+                        //    target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType != SpellDataTargetType.SelfAndUnit)
+                        //{
+                        //    eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.R).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.R).SData.Name,
+                        //        target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType == SpellDataTargetType.Unit);
+                        //}
+                        #endregion
+
+                        if (target.Spellbook.GetSpell(SpellSlot.Q).SData.TargettingType == SpellDataTargetType.Unit)
+                        {
+                            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.Q).SData.Name,
+                                target.Spellbook.GetSpell(SpellSlot.Q).SData.Name);
+                        }
+
+                        if (target.Spellbook.GetSpell(SpellSlot.W).SData.TargettingType == SpellDataTargetType.Unit)
+                        {
+                            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.W).SData.Name,
+                                target.Spellbook.GetSpell(SpellSlot.W).SData.Name);
+                        }
+
+                        if (target.Spellbook.GetSpell(SpellSlot.E).SData.TargettingType == SpellDataTargetType.Unit)
+                        {
+                            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.E).SData.Name,
+                                target.Spellbook.GetSpell(SpellSlot.E).SData.Name);
+                        }
+
+                        if (target.Spellbook.GetSpell(SpellSlot.R).SData.TargettingType == SpellDataTargetType.Unit)
+                        {
+                            eMenu.AddBool(target.ChampionName + "Skill" + target.Spellbook.GetSpell(SpellSlot.R).SData.Name,
+                                target.Spellbook.GetSpell(SpellSlot.R).SData.Name);
+                        }
+                    }
+                }
             }
 
             drawMenu = mainMenu.AddSubMenu("Drawings", "Drawings");
@@ -255,7 +273,7 @@
         internal static bool manualCancel => miscMenu.GetBool("manualCancel");
         internal static bool manualCancelPing => miscMenu.GetBool("manualCancelPing");
 
-        //internal static bool evadeELogic => miscMenu.GetBool("evadeELogic");
+        internal static bool evadeELogic => miscMenu.GetBool("evadeELogic");
 
         internal static bool DrawW => drawMenu.GetBool("DrawW");
         internal static bool DrawE => drawMenu.GetBool("DrawE");
