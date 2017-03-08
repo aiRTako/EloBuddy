@@ -181,14 +181,8 @@
                             Player.Instance.Spellbook.CastSpell(SpellSlot.W);
                         }
                         break;
-                    default:
-                        if (Args.SData.Name == "RivenIzunaBlade" && qStack == 2)
-                        {
-                            if (Q.IsReady() && target.IsValidTarget(400))
-                            {
-                                Player.Instance.Spellbook.CastSpell(SpellSlot.Q, target.Position);
-                            }
-                        }
+                    case "RivenIzunaBlade":
+                        Player.Instance.Spellbook.CastSpell(SpellSlot.Q, target.Position);
                         break;
                 }
             }

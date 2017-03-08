@@ -23,10 +23,10 @@
                 mainMenu.AddGroupLabel("Dont Forgot Use Left Click to Select Target");
                 mainMenu.AddGroupLabel("It will make the Addon More Better");
                 mainMenu.AddGroupLabel("---------------------");
-                mainMenu.AddGroupLabel("My GitHub: https://github.com/NightMoon032/MoonSeries");
+                mainMenu.AddGroupLabel("My GitHub: https://github.com/aiRTako/EloBuddy");
                 mainMenu.AddGroupLabel("If you have Feedback pls post to my topic");
                 mainMenu.AddGroupLabel("----------------------");
-                mainMenu.AddGroupLabel("Credit: NightMoon");
+                mainMenu.AddGroupLabel("Credit: NightMoon & aiRTako");
             }
 
             comboMenu = mainMenu.AddSubMenu("Combo", "Combo");
