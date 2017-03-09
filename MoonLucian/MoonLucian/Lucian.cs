@@ -2,17 +2,17 @@
 {
     using myCommon;
 
-    using System;
-    using System.Linq;
-
-    using SharpDX;
-
     using EloBuddy;
     using EloBuddy.SDK;
     using EloBuddy.SDK.Events;
     using EloBuddy.SDK.Rendering;
     using EloBuddy.SDK.Menu.Values;
     using EloBuddy.SDK.Enumerations;
+
+    using SharpDX;
+
+    using System;
+    using System.Linq;
 
     internal class Lucian : Logic
     {
@@ -160,7 +160,6 @@
             if (select == null && target != null && !target.HaveShiled() && target.IsValidTarget(R.Range))
             {
                 R1.Cast(target);
-                return;
             }
         }
 
@@ -239,7 +238,6 @@
                         if (target.DistanceToPlayer() <= 1000 && target.Health < rDMG * 0.4)
                         {
                             R.Cast(target);
-                            return;
                         }
                     }
                 }
@@ -280,9 +278,12 @@
 
         private static void Farm()
         {
-            var range = (MenuInit.HarassQExtend && QExtend.IsReady()) ? QExtend.Range : (MenuInit.HarassW && W.IsReady()) ? W.Range : (MenuInit.HarassQ && Q.IsReady()) ? Q.Range : 0;
+            var range = MenuInit.HarassQExtend && QExtend.IsReady()
+                ? QExtend.Range
+                : MenuInit.HarassW && W.IsReady() ? W.Range : MenuInit.HarassQ && Q.IsReady() ? Q.Range : 0;
 
-            if (ManaManager.SpellHarass && ManaManager.HasEnoughMana(MenuInit.HarassMP) && range > 0 && Player.Instance.CountEnemyChampionsInRange(range) > 0)
+            if (ManaManager.SpellHarass && ManaManager.HasEnoughMana(MenuInit.HarassMP) && range > 0 && 
+                Player.Instance.CountEnemyChampionsInRange(range) > 0)
             {
                 Harass();
             }
@@ -304,14 +305,18 @@
 
             if (MenuInit.LaneClearQ && Q.IsReady())
             {
-                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.Position, Q.Range).ToList();
+                var minions =
+                    EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
+                        Player.Instance.Position, Q.Range).ToList();
 
                 if (minions.Any())
                 {
                     var minion = minions.FirstOrDefault();
-                    var qExminions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.Position, QExtend.Range).ToList();
+                    var qExminions =
+                        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
+                            Player.Instance.Position, QExtend.Range).ToList();
 
-                    if (QExtend.CountHits(qExminions, Player.Instance.Extend(minion.Position, 900)) >= 2)
+                    if (minion != null && QExtend.CountHits(qExminions, Player.Instance.Extend(minion.Position, 900)) >= 2)
                     {
                         Q.Cast(minion);
                         return;
@@ -321,14 +326,15 @@
 
             if (MenuInit.LaneClearW && W.IsReady())
             {
-                var minions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.Position, W.Range).ToList();
+                var minions =
+                    EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
+                        Player.Instance.Position, W.Range).ToList();
 
                 if (minions.Count > 2)
                 {
                     var pred = W.GetBestCircularCastPosition(minions);
 
                     W.Cast(pred.CastPosition);
-                    return;
                 }
             }
         }
@@ -378,7 +384,7 @@
                 }
             }
 
-            if (sender.IsMe)
+            if (sender != null && sender.IsMe)
             {
                 if (Args.Slot == SpellSlot.Q || Args.Slot == SpellSlot.W || Args.Slot == SpellSlot.E)
                 {
@@ -469,7 +475,7 @@
 
         private static void AfterAAJungle()
         {
-            var mobs = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, Q.Range, true).ToList();
+            var mobs = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, Q.Range).ToList();
 
             if (mobs.Any())
             {
@@ -546,12 +552,10 @@
             if (target.IsValidTarget(Q.Range))
             {
                 Q.Cast(target);
-                return;
             }
             else if (target.IsValidTarget(QExtend.Range) && useExtendQ)
             {
-                var pred = QExtend.GetPrediction(target);
-                var collisions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(x => x.IsValidTarget(Q.Range));
+                var collisions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(x => x.IsValidTarget(Q.Range)).ToList();
 
                 if (!collisions.Any())
                 {
@@ -612,8 +616,10 @@
                     }
                     break;
                 case 1:
-                    {
-                        var dashRange = Player.Instance.DistanceToMouse() > Player.Instance.GetAutoAttackRange() ? E.Range : 130;
+                {
+                        var dashRange = comboMenu["ComboEShort"].Cast<CheckBox>().CurrentValue
+                            ? (Player.Instance.DistanceToMouse() > Player.Instance.GetAutoAttackRange() ? E.Range : 130)
+                            : E.Range;
                         var dashPos = Player.Instance.Extend(Game.CursorPos, dashRange);
 
                         if ((NavMesh.GetCollisionFlags(dashPos).HasFlag(CollisionFlags.Wall) ||

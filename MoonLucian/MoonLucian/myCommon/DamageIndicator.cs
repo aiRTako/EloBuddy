@@ -1,15 +1,14 @@
 ﻿namespace MoonLucian.myCommon
 {
-    using System;
-    using System.Linq;
-    using System.Globalization;
-
-    using SharpDX;
-    using SharpDX.Direct3D9;
-
     using EloBuddy;
     using EloBuddy.SDK;
     using EloBuddy.SDK.Menu;
+
+    using SharpDX;
+
+    using System;
+    using System.Linq;
+    using System.Globalization;
 
     using Color = System.Drawing.Color;
     using Line = EloBuddy.SDK.Rendering.Line;
@@ -20,8 +19,6 @@
         private static readonly Vector2 PercentOffset = new Vector2(-31, 3);
         private static readonly Vector2 PercentOffset1 = new Vector2(-30, 3);
         private static readonly Vector2 PercentOffset2 = new Vector2(-29, 3);
-
-        private static Font _font;
 
         private static Line _line;
 
@@ -36,16 +33,6 @@
 
         internal static void AddToMenu(Menu mainMenu, DamageToUnitDelegate Damage = null)
         {
-            _font = new Font(Drawing.Direct3DDevice, 
-                new FontDescription
-                {
-                    FaceName = "Calibri",
-                    Height = 11,
-                    Weight = FontWeight.Bold,
-                    Quality = FontQuality.ClearType,
-                    OutputPrecision = FontPrecision.TrueType
-                });
-
             _line = new Line
             {
                 Antialias = true,

@@ -67,11 +67,12 @@
                 return 0f;
             }
 
-            var attackDMG = Player.Instance.GetAutoAttackDamage(target);
-            var qDMG = new double[] { 80, 115, 150, 185, 220 }[Player.Instance.Spellbook.GetSpell(SpellSlot.Q).Level - 1] +
-               new double[] { 60, 70, 80, 90, 100 }[Player.Instance.Spellbook.GetSpell(SpellSlot.Q).Level - 1] / 100 * Player.Instance.FlatPhysicalDamageMod;
+            var qDMG =
+                new double[] {80, 115, 150, 185, 220}[Player.Instance.Spellbook.GetSpell(SpellSlot.Q).Level - 1] +
+                new double[] {60, 70, 80, 90, 100}[Player.Instance.Spellbook.GetSpell(SpellSlot.Q).Level - 1]/100*
+                Player.Instance.FlatPhysicalDamageMod;
 
-            return Damage.CalculateDamageOnUnit(Player.Instance, target, DamageType.Physical, (float)qDMG);
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Physical, (float)qDMG);
         }
 
         internal static float GetWDamage(AIHeroClient target)
@@ -85,7 +86,7 @@
             var wDMG = new double[] { 60, 100, 140, 180, 220 }[Player.Instance.Spellbook.GetSpell(SpellSlot.W).Level - 1] +
                 0.9 * Player.Instance.TotalMagicalDamage;
 
-            return Damage.CalculateDamageOnUnit(Player.Instance, target, DamageType.Magical, (float)wDMG);
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (float)wDMG);
         }
 
         internal static float GetEDamage(AIHeroClient target)
@@ -110,7 +111,7 @@
             var rDMG = new double[] { 20, 35, 50 }[Player.Instance.Spellbook.GetSpell(SpellSlot.R).Level - 1] + 
                 0.1 * Player.Instance.TotalMagicalDamage + 0.2 * Player.Instance.FlatPhysicalDamageMod;
 
-            return Damage.CalculateDamageOnUnit(Player.Instance, target, DamageType.Magical, (float)rDMG);
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical, (float)rDMG);
         }
 
         internal static float GetIgniteDmage(Obj_AI_Base target)

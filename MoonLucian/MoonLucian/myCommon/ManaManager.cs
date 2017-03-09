@@ -1,7 +1,6 @@
 ﻿namespace MoonLucian.myCommon
 {
     using EloBuddy;
-    using EloBuddy.SDK;
     using EloBuddy.SDK.Menu;
     using EloBuddy.SDK.Menu.Values;
 
@@ -9,9 +8,6 @@
 
     internal static class ManaManager
     {
-        private static Menu FarmMenu;
-        private static Menu drawMenu;
-
         internal static bool SpellFarm;
         internal static bool SpellHarass;
 
@@ -22,8 +18,6 @@
 
         internal static void AddSpellFarm(Menu mainMenu)
         {
-            FarmMenu = mainMenu;
-
             mainMenu.AddSeparator();
             mainMenu.AddText("Moon Farm Logic");
             mainMenu.AddBool("SpellFarm", "Use Spell Farm(Mouse Score Control)");
@@ -49,8 +43,6 @@
 
         internal static void AddDrawFarm(Menu mainMenu)
         {
-            drawMenu = mainMenu;
-
             mainMenu.AddSeparator();
             mainMenu.AddText("Draw Moon Farm Logic");
             mainMenu.AddBool("DrawFarm", "Draw Spell Farm Status");
@@ -68,7 +60,7 @@
                             "Spell Farm:" + (SpellFarm ? "On" : "Off"));
                     }
 
-                    if (drawMenu.GetBool("DrawHarass"))
+                    if (mainMenu.GetBool("DrawHarass"))
                     {
                         var MePos = Drawing.WorldToScreen(Player.Instance.Position);
 

@@ -1,9 +1,9 @@
 ﻿namespace MoonLucian
 {
-    using System;
-
     using EloBuddy;
     using EloBuddy.SDK.Events;
+
+    using System;
 
     internal class Program
     {

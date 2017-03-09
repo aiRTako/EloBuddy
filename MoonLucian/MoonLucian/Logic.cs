@@ -1,11 +1,11 @@
 ﻿namespace MoonLucian
 {
-    using System;
-    using System.Linq;
-
     using EloBuddy;
     using EloBuddy.SDK;
     using EloBuddy.SDK.Menu;
+
+    using System;
+    using System.Linq;
 
     internal class Logic
     {

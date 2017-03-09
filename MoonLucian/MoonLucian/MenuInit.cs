@@ -2,12 +2,13 @@
 {
     using myCommon;
 
-    using System.Linq;
-
     using EloBuddy;
     using EloBuddy.SDK;
     using EloBuddy.SDK.Menu;
     using EloBuddy.SDK.Menu.Values;
+
+    using System.Linq;
+
 
     internal class MenuInit : Logic
     {
@@ -18,10 +19,10 @@
                 mainMenu.AddGroupLabel("pls setting the Orbwalker");
                 mainMenu.AddGroupLabel("Orbwalker -> Advanced -> Update event listening -> Enabled On Update(more fast)");
                 mainMenu.AddGroupLabel("--------------------");
-                mainMenu.AddGroupLabel("My GitHub: https://github.com/NightMoon032/MoonSeries");
+                mainMenu.AddGroupLabel("My GitHub: https://github.com/aiRTako/EloBuddy");
                 mainMenu.AddGroupLabel("If you have Feedback pls post to my topic");
                 mainMenu.AddGroupLabel("---------------------");
-                mainMenu.AddGroupLabel("Credit: NightMoon");
+                mainMenu.AddGroupLabel("Credit: NightMoon & aiRTako");
             }
 
             comboMenu = mainMenu.AddSubMenu("Combo", "Combo");
@@ -37,6 +38,7 @@
                 comboMenu.AddBool("ComboEReset", "Use E Reset Auto Attack");
                 comboMenu.AddBool("ComboESafe", "Use E| Safe Check");
                 comboMenu.AddBool("ComboEWall", "Use E| Dont Dash to Wall");
+                comboMenu.AddBool("ComboEShort", "Use E| Enabled the Short E Logic");
                 comboMenu.AddLine("R");
                 comboMenu.AddBool("ComboR", "Use R");
             }

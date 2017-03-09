@@ -1,16 +1,16 @@
 ﻿namespace MoonLucian.myCommon
 {
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
-
-    using SharpDX;
-
     using EloBuddy;
     using EloBuddy.SDK;
     using EloBuddy.SDK.Menu;
     using EloBuddy.SDK.Menu.Values;
     using EloBuddy.SDK.Enumerations;
+
+    using SharpDX;
+
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
 
     internal static class Extensions
     {
@@ -202,14 +202,7 @@
         //Spell Extensions
         internal static void HaveCollsion(this Spell.Skillshot spell, bool haveCollsion, int count = 0)
         {
-            if (haveCollsion)
-            {
-                spell.AllowedCollisionCount = count;
-            }
-            else
-            {
-                spell.AllowedCollisionCount = int.MaxValue;
-            }
+            spell.AllowedCollisionCount = haveCollsion ? count : int.MaxValue;
         }
 
         internal static void PredCast(this Spell.Skillshot spell, AIHeroClient target, bool checkCollsion = true, HitChance hitchance = HitChance.High)
