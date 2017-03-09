@@ -71,15 +71,15 @@
                     qStack = 0;
                     lastQTime = TickCount;
                     break;
-                case "Spell2": //W
-                    time = 50;
-                    break;
-                case "Spell4a": //R1
-                    time = 50;
-                    break;
-                case "Spell4b": //R2
-                    time = 180;
-                    break;
+                //case "Spell2": //W
+                //    time = 50;
+                //    break;
+                //case "Spell4a": //R1
+                //    time = 50;
+                //    break;
+                //case "Spell4b": //R2
+                //    time = 180;
+                //    break;
                 default:
                     time = 0;
                     break;
@@ -96,42 +96,33 @@
                     {
                         if (time - Game.Ping > 0)
                         {
-                            Core.DelayAction(() => Cancel(time == 50), time - Game.Ping);
+                            Core.DelayAction(Cancel, time - Game.Ping);
                         }
                         else
                         {
-                            Core.DelayAction(() => Cancel(time == 50), 1);
+                            Core.DelayAction(Cancel, 1);
                         }
                     }
                     else
                     {
-                        Core.DelayAction(() => Cancel(time == 50), time);
+                        Core.DelayAction(Cancel, time);
                     }
                 }
             }
         }
 
-        private static void Cancel(bool disAttack = false)
+        private static void Cancel()
         {
             Player.DoEmote(Emote.Dance);
             Orbwalker.ResetAutoAttack();
 
-            if (disAttack)
+            if (Orbwalker.GetTarget() != null && !Orbwalker.GetTarget().IsDead)
             {
-                Core.DelayAction(() => Orbwalker.DisableAttacking = true, 1);
-                Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
-                Core.DelayAction(() => Orbwalker.DisableAttacking = false, 300 - Game.Ping);
+                Orbwalker.OrbwalkTo(Player.Instance.Position.Extend(Orbwalker.GetTarget().Position, +10).To3D());
             }
             else
             {
-                if (Orbwalker.GetTarget() != null && !Orbwalker.GetTarget().IsDead)
-                {
-                    Orbwalker.OrbwalkTo(Orbwalker.GetTarget().Position);
-                }
-                else
-                {
-                    Orbwalker.OrbwalkTo(Game.CursorPos);
-                }
+                Orbwalker.OrbwalkTo(Game.CursorPos);
             }
         }
 
