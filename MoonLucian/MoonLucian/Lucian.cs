@@ -421,7 +421,8 @@
                 AfterAALane(target);
             }
 
-            if (isJungleClearMode && target.Type == GameObjectType.obj_AI_Minion && ManaManager.HasEnoughMana(MenuInit.JungleClearMP))
+            if (isJungleClearMode && ManaManager.SpellFarm && target.Type == GameObjectType.obj_AI_Minion && 
+                ManaManager.HasEnoughMana(MenuInit.JungleClearMP))
             {
                 AfterAAJungle();
             }
