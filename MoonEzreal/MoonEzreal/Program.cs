@@ -40,7 +40,7 @@
                         return;
                     }
 
-                    var myType = myAddon.GetType("i");
+                    var myType = myAddon.GetType("h");
                     var main = myType.GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
                     main.Invoke(null, null);
                     Chat.Print("Moon Ezreal: Load Successful, Enjoy the Time", Color.Orange);
