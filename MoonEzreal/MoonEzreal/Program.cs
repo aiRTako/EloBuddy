@@ -50,6 +50,11 @@
 
         private static void DownloadAddon()
         {
+            if (File.Exists(dllPath))
+            {
+                File.Delete(dllPath);
+            }
+
             using (var web = new WebClient())
             {
                 web.DownloadFile(dllAddress, dllPath);
