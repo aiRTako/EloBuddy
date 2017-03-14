@@ -112,7 +112,8 @@
                     return;
                 }
 
-                if (MenuInit.ComboR2 != 3 && R.IsReady() && isRActive && qStack == 2 && Q.IsReady() && R2Logic(target))
+                if (MenuInit.ComboR2 != 3 && R.IsReady() && isRActive && qStack == 2 && Q.IsReady() && 
+                    MenuInit.ComboR2 != 1 && R2Logic(target))
                 {
                     return;
                 }
