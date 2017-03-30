@@ -32,7 +32,7 @@
                     else
                     {
                         var GitVersion = DownloadVersion();
-                        const string myVersion = "1.0.0.1";
+                        const string myVersion = "1.0.0.2";
 
                         if (myVersion != GitVersion)
                         {
