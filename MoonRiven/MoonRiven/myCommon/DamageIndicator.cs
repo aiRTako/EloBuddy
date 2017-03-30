@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.myCommon
+﻿namespace MoonRiven_2.myCommon
 {
     using System;
     using System.Linq;
@@ -89,7 +89,7 @@
                 return;
             }
 
-            foreach (var unit in EntityManager.Heroes.Enemies.Where(u => u.IsValidTarget() && u.IsHPBarRendered))
+            foreach (var unit in EntityManager.Heroes.Enemies.Where(u => u.IsValidRange() && u.IsHPBarRendered))
             {
                 var damage = _damageToUnit(unit);
 

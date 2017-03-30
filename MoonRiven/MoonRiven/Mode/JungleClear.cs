@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using myCommon;
 
@@ -48,7 +48,7 @@
 
             var target = tar as Obj_AI_Minion;
 
-            if (target != null && target.IsValidTarget(400) && target.Health > Player.Instance.GetAutoAttackDamage(target, true) &&
+            if (target != null && target.IsValidRange(400) && target.Health > Player.Instance.GetAutoAttackDamage(target, true) &&
                 !target.Name.Contains("Plant"))
             {
                 if (MenuInit.JungleClearItem)
@@ -56,18 +56,18 @@
                     UseItem();
                 }
 
-                if (MenuInit.JungleClearQ && Q.IsReady() && target.IsValidTarget(400) && CastQ(target))
+                if (MenuInit.JungleClearQ && Q.IsReady() && target.IsValidRange(400) && CastQ(target))
                 {
                     return;
                 }
 
-                if (MenuInit.JungleClearW && W.IsReady() && target.IsValidTarget(W.Range) && 
+                if (MenuInit.JungleClearW && W.IsReady() && target.IsValidRange(W.Range) && 
                     Player.Instance.Spellbook.CastSpell(SpellSlot.W))
                 {
                     return;
                 }
 
-                if (MenuInit.JungleClearE && E.IsReady() && target.IsValidTarget(400))
+                if (MenuInit.JungleClearE && E.IsReady() && target.IsValidRange(400))
                 {
                     Player.Instance.Spellbook.CastSpell(SpellSlot.E, Game.CursorPos);
                 }

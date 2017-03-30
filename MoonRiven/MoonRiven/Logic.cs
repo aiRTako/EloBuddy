@@ -1,4 +1,4 @@
-﻿namespace MoonRiven
+﻿namespace MoonRiven_2
 {
     using myCommon;
 
@@ -98,7 +98,7 @@
 
         internal static bool CastQ(Obj_AI_Base target)
         {
-            if (target == null || target.IsDead || !target.IsValidTarget() || Q.Level == 0 || !Q.IsReady())
+            if (target == null || target.IsDead || !target.IsValidRange() || Q.Level == 0 || !Q.IsReady())
             {
                 return false;
             }
@@ -116,7 +116,7 @@
 
         internal static bool R1Logic(AIHeroClient target)
         {
-            if (!target.IsValidTarget(500) || R.Name != "RivenFengShuiEngine" || !MenuInit.ComboR1)
+            if (!target.IsValidRange(500) || R.Name != "RivenFengShuiEngine" || !MenuInit.ComboR1)
             {
                 return false;
             }
@@ -126,7 +126,7 @@
 
         internal static bool R2Logic(AIHeroClient target)
         {
-            if (!target.IsValidTarget() || R.Name == "RivenFengShuiEngine" || MenuInit.ComboR2 == 3)
+            if (!target.IsValidRange() || R.Name == "RivenFengShuiEngine" || MenuInit.ComboR2 == 3)
             {
                 return false;
             }

@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using myCommon;
 
@@ -13,7 +13,7 @@
         {
             var target = TargetSelector.GetTarget(E.Range + Player.Instance.BoundingRadius, DamageType.Physical);
 
-            if (target.IsValidTarget())
+            if (target.IsValidRange())
             {
                 if (MenuInit.HarassMode == 0)
                 {
@@ -32,7 +32,7 @@
                             Player.Instance.Position.Extend(pos, Q.Range).To3D()), 100);
                     }
 
-                    if (W.IsReady() && MenuInit.HarassW && target.IsValidTarget(W.Range) && qStack == 1)
+                    if (W.IsReady() && MenuInit.HarassW && target.IsValidRange(W.Range) && qStack == 1)
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.W);
                     }
@@ -60,14 +60,14 @@
                         Player.Instance.Spellbook.CastSpell(SpellSlot.E, target.Position);
                     }
 
-                    if (Q.IsReady() && MenuInit.HarassQ && target.IsValidTarget(Q.Range) && qStack == 0 &&
+                    if (Q.IsReady() && MenuInit.HarassQ && target.IsValidRange(Q.Range) && qStack == 0 &&
                         Environment.TickCount - lastQTime > 500)
                     {
                         CastQ(target);
                         Orbwalker.ForcedTarget = target;
                     }
 
-                    if (W.IsReady() && MenuInit.HarassW && target.IsValidTarget(W.Range) && (!Q.IsReady() || qStack == 1))
+                    if (W.IsReady() && MenuInit.HarassW && target.IsValidRange(W.Range) && (!Q.IsReady() || qStack == 1))
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.W);
                     }
@@ -79,7 +79,7 @@
         {
             AIHeroClient target = null;
 
-            if (myTarget.IsValidTarget())
+            if (myTarget.IsValidRange())
             {
                 target = myTarget;
             }
@@ -88,7 +88,7 @@
                 target = (AIHeroClient)tar;
             }
 
-            if (target == null || !target.IsValidTarget())
+            if (target == null || !target.IsValidRange())
                 return;
 
             if (MenuInit.HarassQ && Q.IsReady())

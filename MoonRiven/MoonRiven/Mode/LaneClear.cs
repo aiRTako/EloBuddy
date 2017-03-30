@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using myCommon;
 
@@ -50,7 +50,7 @@
                  target.Type == GameObjectType.obj_Barracks ||
                  target.Type == GameObjectType.obj_BarracksDampener ||
                  target.Type == GameObjectType.obj_HQ) &&
-                !EntityManager.Heroes.Enemies.Exists(x => x.IsValidTarget(800) && x.DistanceToPlayer() <= 800))
+                !EntityManager.Heroes.Enemies.Exists(x => x.IsValidRange(800) && x.DistanceToPlayer() <= 800))
             {
                 Player.Instance.Spellbook.CastSpell(SpellSlot.Q, target.Position);
             }

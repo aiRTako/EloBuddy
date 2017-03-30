@@ -1,4 +1,4 @@
-﻿namespace MoonRiven
+﻿namespace MoonRiven_2
 {
     using myCommon;
 
@@ -243,7 +243,9 @@
 
         private static void OnPostAttack(AttackableUnit target, EventArgs Args)
         {
-            if (target == null || target.IsAlly || target.IsMe || !target.IsValidTarget())
+            Orbwalker.ForcedTarget = null;
+
+            if (target == null || target.IsAlly)
                 return;
 
             if (isComboMode && target.Type == GameObjectType.AIHeroClient)
@@ -276,7 +278,7 @@
 
         private static void OnGapcloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs Args)
         {
-            if (!MenuInit.AntiGapcloserW || !W.IsReady() || sender == null || !sender.IsEnemy)
+            if (!MenuInit.AntiGapcloserW || !W.IsReady() || sender == null || !sender.IsEnemy || !sender.IsValidTarget())
             {
                 return;
             }
@@ -298,7 +300,7 @@
 
             var target = (AIHeroClient) sender;
 
-            if (target.IsValidTarget(W.Range) && Args.DangerLevel >= DangerLevel.High && !target.HaveShiled())
+            if (target.IsValidRange(W.Range) && Args.DangerLevel >= DangerLevel.High && !target.HaveShiled())
             {
                 Player.Instance.Spellbook.CastSpell(SpellSlot.W);
             }

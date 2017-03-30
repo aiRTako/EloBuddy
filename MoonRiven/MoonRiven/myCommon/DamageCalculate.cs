@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.myCommon
+﻿namespace MoonRiven_2.myCommon
 {
     using EloBuddy;
     using EloBuddy.SDK;
@@ -66,7 +66,7 @@
         internal static float GetQDamage(Obj_AI_Base target)
         {
             if (Player.Instance.Spellbook.GetSpell(SpellSlot.Q).Level == 0 ||
-                !Player.Instance.Spellbook.GetSpell(SpellSlot.Q).IsReady)
+                Player.Instance.Spellbook.GetSpell(SpellSlot.Q).IsOnCooldown)
             {
                 return 0f;
             }

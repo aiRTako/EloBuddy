@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using myCommon;
 
@@ -15,9 +15,9 @@
                 foreach (
                     var target in
                     EntityManager.Heroes.Enemies.Where(
-                        x => x.IsValidTarget(R.Range) && DamageCalculate.GetRDamage(x) > x.Health && !x.IsUnKillable()))
+                        x => x.IsValidRange(R.Range) && DamageCalculate.GetRDamage(x) > x.Health && !x.IsUnKillable()))
                 {
-                    if (target.IsValidTarget(R.Range - 100) && !target.IsValidTarget(500))
+                    if (target.IsValidRange(R.Range - 100) && !target.IsValidRange(500))
                     {
                         R1.Cast(target.Position);
                     }

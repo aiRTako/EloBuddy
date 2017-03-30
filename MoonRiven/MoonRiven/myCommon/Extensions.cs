@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.myCommon
+﻿namespace MoonRiven_2.myCommon
 {
     using EloBuddy;
     using EloBuddy.SDK;
@@ -197,6 +197,33 @@
             }
 
             return target.HasBuff("FioraW");
+        }
+
+        internal static bool IsValidRange(this AttackableUnit unit, float range = float.MaxValue, bool checkTeam = true, Vector3 from = new Vector3())
+        {
+            if (unit == null || !unit.IsValid || !unit.IsVisible || unit.IsDead || !unit.IsTargetable
+                || unit.IsInvulnerable)
+
+            {
+                return false;
+            }
+
+            if (checkTeam && unit.Team == Player.Instance.Team)
+            {
+                return false;
+            }
+
+            if (unit.Name == "WardCorpse")
+            {
+                return false;
+            }
+
+            var @base = unit as Obj_AI_Base;
+
+            return !(range < float.MaxValue)
+                   || !(Vector2.DistanceSquared(
+                       (from.To2D().IsValid() ? from : Player.Instance.ServerPosition).To2D(),
+                       (@base?.ServerPosition ?? unit.Position).To2D()) > range * range);
         }
     }
 }

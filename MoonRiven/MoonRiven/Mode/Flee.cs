@@ -1,16 +1,16 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using EloBuddy;
     using EloBuddy.SDK;
     using EloBuddy.SDK.Events;
-
+    using myCommon;
     using System.Linq;
 
     internal class Flee : Logic
     {
         internal static void InitTick()
         {
-            if (MenuInit.FleeW && W.IsReady() && EntityManager.Heroes.Enemies.Any(x => x.IsValidTarget(W.Range) && !HaveShield(x)))
+            if (MenuInit.FleeW && W.IsReady() && EntityManager.Heroes.Enemies.Any(x => x.IsValidRange(W.Range) && !HaveShield(x)))
             {
                 Player.Instance.Spellbook.CastSpell(SpellSlot.W);
             }

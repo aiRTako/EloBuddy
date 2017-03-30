@@ -1,4 +1,4 @@
-﻿namespace MoonRiven
+﻿namespace MoonRiven_2
 {
     using EloBuddy;
     using EloBuddy.SDK.Events;

@@ -1,4 +1,4 @@
-﻿namespace MoonRiven.myCommon
+﻿namespace MoonRiven_2.myCommon
 {
     using EloBuddy;
     using EloBuddy.SDK.Menu;

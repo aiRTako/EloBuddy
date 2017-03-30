@@ -1,4 +1,4 @@
-﻿namespace MoonRiven
+﻿namespace MoonRiven_2
 {
     using myCommon;
 
@@ -273,7 +273,7 @@
         internal static bool manualCancel => miscMenu.GetBool("manualCancel");
         internal static bool manualCancelPing => miscMenu.GetBool("manualCancelPing");
 
-        internal static bool evadeELogic => miscMenu.GetBool("evadeELogic");
+        internal static bool evadeELogic => eMenu.GetBool("evadeELogic");
 
         internal static bool DrawW => drawMenu.GetBool("DrawW");
         internal static bool DrawE => drawMenu.GetBool("DrawE");

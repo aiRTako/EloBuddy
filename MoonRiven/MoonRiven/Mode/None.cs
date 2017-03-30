@@ -1,20 +1,20 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using EloBuddy;
     using EloBuddy.SDK;
-
+    using myCommon;
     using System;
 
     internal class None : Logic
     {
         internal static void Init()
         {
-            if (TargetSelector.SelectedTarget != null && TargetSelector.SelectedTarget.IsValidTarget())
+            if (TargetSelector.SelectedTarget != null && TargetSelector.SelectedTarget.IsValidRange())
             {
                 myTarget = TargetSelector.SelectedTarget;
             }
             else if (Orbwalker.GetTarget() != null  && Orbwalker.GetTarget().Type == GameObjectType.AIHeroClient && 
-                Orbwalker.GetTarget().IsValidTarget())
+                Orbwalker.GetTarget().IsValidRange())
             {
                 myTarget = (AIHeroClient)Orbwalker.GetTarget();
             }

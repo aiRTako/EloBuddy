@@ -1,8 +1,8 @@
-﻿namespace MoonRiven.Mode
+﻿namespace MoonRiven_2.Mode
 {
     using EloBuddy;
     using EloBuddy.SDK;
-
+    using myCommon;
     using System;
 
     internal class Burst : Logic
@@ -11,7 +11,7 @@
         {
             var target = TargetSelector.SelectedTarget;
 
-            if (target == null || !target.IsValidTarget())
+            if (target == null || !target.IsValidRange())
                 return;
 
             if (MenuInit.BurstMode == 0)
@@ -33,7 +33,7 @@
 
             if (E.IsReady() && R.IsReady() && W.IsReady() && !isRActive)
             {
-                if (target.IsValidTarget(E.Range + Player.Instance.BoundingRadius - 30))
+                if (target.IsValidRange(E.Range + Player.Instance.BoundingRadius - 30))
                 {
                     Player.Instance.Spellbook.CastSpell(SpellSlot.E, target.Position);
                     Core.DelayAction(() => R.Cast(), 10);
@@ -44,7 +44,7 @@
 
                 if (MenuInit.BurstFlash && Flash != SpellSlot.Unknown && Player.Instance.Spellbook.GetSpell(Flash).IsReady)
                 {
-                    if (target.IsValidTarget(E.Range + Player.Instance.BoundingRadius + 425 - 50))
+                    if (target.IsValidRange(E.Range + Player.Instance.BoundingRadius + 425 - 50))
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.E, target.Position);
                         Core.DelayAction(() => R.Cast(), 10);
@@ -56,7 +56,7 @@
             }
             else
             {
-                if (W.IsReady() && target.IsValidTarget(W.Range))
+                if (W.IsReady() && target.IsValidRange(W.Range))
                 {
                     Player.Instance.Spellbook.CastSpell(SpellSlot.W);
                 }
@@ -72,7 +72,7 @@
 
             if (MenuInit.BurstFlash && Flash != SpellSlot.Unknown && Player.Instance.Spellbook.GetSpell(Flash).IsReady)
             {
-                if (target.IsValidTarget(E.Range + 425 + Q.Range - 150) && qStack > 0 && E.IsReady() && R.IsReady() &&
+                if (target.IsValidRange(E.Range + 425 + Q.Range - 150) && qStack > 0 && E.IsReady() && R.IsReady() &&
                     !isRActive && W.IsReady())
                 {
                     Player.Instance.Spellbook.CastSpell(SpellSlot.E, target.Position);
@@ -92,7 +92,7 @@
             }
             else
             {
-                if (target.IsValidTarget(E.Range + Q.Range - 150) && qStack == 2 && E.IsReady() && R.IsReady() && !isRActive && W.IsReady())
+                if (target.IsValidRange(E.Range + Q.Range - 150) && qStack == 2 && E.IsReady() && R.IsReady() && !isRActive && W.IsReady())
                 {
                     Player.Instance.Spellbook.CastSpell(SpellSlot.E, target.Position);
                     Core.DelayAction(() => R.Cast(), 10);
@@ -103,7 +103,7 @@
                     return;
                 }
 
-                if (target.IsValidTarget(E.Range + Q.Range + Q.Range + Q.Range))
+                if (target.IsValidRange(E.Range + Q.Range + Q.Range + Q.Range))
                 {
                     if (qStack < 2 && Environment.TickCount - lastQTime >= 850)
                     {
@@ -117,7 +117,7 @@
         {
             var target = TargetSelector.SelectedTarget;
 
-            if (target == null || !target.IsValidTarget())
+            if (target == null || !target.IsValidRange())
                 return;
 
             if (MenuInit.BurstMode == 0)
@@ -145,7 +145,7 @@
                 return;
             }
 
-            if (W.IsReady() && target.IsValidTarget(W.Range) && Player.Instance.Spellbook.CastSpell(SpellSlot.W))
+            if (W.IsReady() && target.IsValidRange(W.Range) && Player.Instance.Spellbook.CastSpell(SpellSlot.W))
             {
                 return;
             }
@@ -171,7 +171,7 @@
                 return;
             }
 
-            if (W.IsReady() && target.IsValidTarget(W.Range) && Player.Instance.Spellbook.CastSpell(SpellSlot.W))
+            if (W.IsReady() && target.IsValidRange(W.Range) && Player.Instance.Spellbook.CastSpell(SpellSlot.W))
             {
                 return;
             }
@@ -191,7 +191,7 @@
 
             var target = TargetSelector.SelectedTarget;
 
-            if (target != null && target.IsValidTarget())
+            if (target != null && target.IsValidRange())
             {
                 if (MenuInit.BurstMode == 0)
                 {
@@ -209,11 +209,11 @@
             switch (Args.SData.Name)
             {
                 case "ItemTiamatCleave":
-                    if (W.IsReady() && target.IsValidTarget(W.Range))
+                    if (W.IsReady() && target.IsValidRange(W.Range))
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.W);
                     }
-                    else if (Q.IsReady() && target.IsValidTarget(400))
+                    else if (Q.IsReady() && target.IsValidRange(400))
                     {
                         CastQ(target);
                     }
@@ -223,7 +223,7 @@
                     {
                         R1.Cast(target.Position);
                     }
-                    else if (Q.IsReady() && target.IsValidTarget(400))
+                    else if (Q.IsReady() && target.IsValidRange(400))
                     {
                         CastQ(target);
                     }
@@ -240,7 +240,7 @@
                     }
                     break;
                 case "RivenIzunaBlade":
-                    if (Q.IsReady() && target.IsValidTarget(400))
+                    if (Q.IsReady() && target.IsValidRange(400))
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.Q, target.Position);
                     }
@@ -253,11 +253,11 @@
             switch (Args.SData.Name)
             {
                 case "ItemTiamatCleave":
-                    if (W.IsReady() && target.IsValidTarget(W.Range))
+                    if (W.IsReady() && target.IsValidRange(W.Range))
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.W);
                     }
-                    else if (Q.IsReady() && target.IsValidTarget(400))
+                    else if (Q.IsReady() && target.IsValidRange(400))
                     {
                         CastQ(target);
                     }
@@ -267,13 +267,13 @@
                     {
                         R1.Cast(target.Position);
                     }
-                    else if (Q.IsReady() && target.IsValidTarget(400))
+                    else if (Q.IsReady() && target.IsValidRange(400))
                     {
                         CastQ(target);
                     }
                     break;
                 case "RivenIzunaBlade":
-                    if (Q.IsReady() && target.IsValidTarget(400))
+                    if (Q.IsReady() && target.IsValidRange(400))
                     {
                         Player.Instance.Spellbook.CastSpell(SpellSlot.Q, target.Position);
                     }
