@@ -32,9 +32,9 @@
                     else
                     {
                         var GitVersion = DownloadVersion();
-                        const string myVersion = "1.0.0.3";
+                        var myAddon = Assembly.LoadFrom(dllPath);
 
-                        if (myVersion != GitVersion)
+                        if (myAddon.GetName().Version.ToString() != GitVersion)
                         {
                             Chat.Print("TakoYasuo: 妫€鏌ュ埌鏇存柊, " + "寮€濮嬫洿鏂扮増鏈腑!", Color.Red);
                             Chat.Print("TakoYasuo: Your Version is Outdate! Now Download the New Version!", Color.Red);
@@ -42,7 +42,6 @@
                             return;
                         }
 
-                        var myAddon = Assembly.LoadFrom(dllPath);
                         var myType = myAddon.GetType("l", false);
                         var main = myType.GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
 
