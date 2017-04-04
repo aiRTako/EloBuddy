@@ -43,7 +43,7 @@
                             return;
                         }
 
-                        var myType = myAddon.GetType("i", true);
+                        var myType = myAddon.GetType("m", true);
                         var main = myType.GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
                         main.Invoke(null, null);
                         Chat.Print("TakoVayne: Load Successful, Enjoy the Time", Color.Orange);
