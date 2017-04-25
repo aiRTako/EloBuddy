@@ -34,14 +34,6 @@
 
                         var myAddon = Assembly.LoadFrom(dllPath);
                         var myVersion = myAddon.GetName().Version.ToString();
-
-                        if (GitVersion != myVersion)
-                        {
-                            Chat.Print("Tako Cassiopeia: Have a new Update for this Addon, now Download the new Version", Color.Orange);
-                            DownloadAddon();
-                            return;
-                        }
-
                         var myType = myAddon.GetType("\uFDD8");
                         var main = myType.GetMethod("\uFDD0", BindingFlags.NonPublic | BindingFlags.Static);
                         main.Invoke(null, null);
