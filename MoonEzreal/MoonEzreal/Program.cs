@@ -32,14 +32,6 @@
 
                     var myAddon = Assembly.LoadFrom(dllPath);
                     var myVersion = myAddon.GetName().Version.ToString();
-
-                    if (GitVersion != myVersion)
-                    {
-                        Chat.Print("Moon Ezreal: Have a new Update for this Addon, now Download the new Version", Color.Orange);
-                        DownloadAddon();
-                        return;
-                    }
-
                     var myType = myAddon.GetType("h");
                     var main = myType.GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
                     main.Invoke(null, null);
