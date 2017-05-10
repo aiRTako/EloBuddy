@@ -6,63 +6,33 @@
     using System;
     using System.Drawing;
     using System.IO;
-    using System.Net;
     using System.Reflection;
 
     internal class Program
     {
-        private static readonly string dllPath = @"C:\Users\" + Environment.UserName +
-                                                 @"\AppData\Roaming\EloBuddy\Addons\Libraries\MoonEzreal.dll";
-
-        private const string dllAddress = "https://raw.githubusercontent.com/aiRTako/MyAddonDB/master/Ezreal/MoonEzreal.dll";
-        private const string dllVersion = "https://raw.githubusercontent.com/aiRTako/MyAddonDB/master/Ezreal/MoonEzreal.txt";
+        private static readonly string dllPath = @"C:\Users\" + Environment.UserName + @"\AppData\Roaming\EloBuddy\Addons\Libraries\MoonEzreal.dll";
 
         private static void Main(string[] Args)
         {
             Loading.OnLoadingComplete += eventArgs =>
             {
-                if (!File.Exists(dllPath))
+                if (File.Exists(dllPath))
                 {
-                    Chat.Print("Moon Ezreal: Now Download the Addon, please waiting...", Color.Orange);
-                    DownloadAddon();
+                    File.Delete(dllPath);
                 }
-                else
-                {
-                    var GitVersion = DownloadVersion();
 
-                    var myAddon = Assembly.LoadFrom(dllPath);
-                    var myVersion = myAddon.GetName().Version.ToString();
-                    var myType = myAddon.GetType("h");
-                    var main = myType.GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
-                    main.Invoke(null, null);
-                    Chat.Print("Moon Ezreal: Load Successful, Enjoy the Time", Color.Orange);
+                var bydll = Properties.Resources.MoonEzreal;
+                using (var fs = new FileStream(dllPath, FileMode.Create))
+                {
+                    fs.Write(bydll, 0, bydll.Length);
                 }
+
+                var dllpath = Assembly.LoadFrom(dllPath);
+                var main = dllpath.GetType("h").GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
+
+                main.Invoke(null, null);
+                Chat.Print("Moon Ezreal: Load Successful, Enjoy the Time", Color.Orange);
             };
-        }
-
-        private static void DownloadAddon()
-        {
-            if (File.Exists(dllPath))
-            {
-                File.Delete(dllPath);
-            }
-
-            using (var web = new WebClient())
-            {
-                web.DownloadFile(dllAddress, dllPath);
-            }
-
-            Chat.Print("Moon Ezreal: Download Successful... Please F5 Reload the Addon!", Color.Orange);
-        }
-
-        private static string DownloadVersion()
-        {
-            using (var web = new WebClient())
-            {
-                var version = web.DownloadString(dllVersion);
-
-                return version;
-            }
         }
     }
 }

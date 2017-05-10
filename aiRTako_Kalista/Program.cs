@@ -6,64 +6,33 @@
     using System;
     using System.Drawing;
     using System.IO;
-    using System.Net;
     using System.Reflection;
 
     internal class Program
     {
-        private static readonly string dllPath = @"C:\Users\" + Environment.UserName +
-                                                 @"\AppData\Roaming\EloBuddy\Addons\Libraries\aiRTako_Kalista.dll";
-
-        private const string dllAddress = "https://raw.githubusercontent.com/aiRTako/MyAddonDB/master/Kalista/aiRTako_Kalista.dll";
-        private const string dllVersion = "https://raw.githubusercontent.com/aiRTako/MyAddonDB/master/Kalista/aiRTako_Kalista.txt";
+        private static readonly string dllPath = @"C:\Users\" + Environment.UserName + @"\AppData\Roaming\EloBuddy\Addons\Libraries\aiRTako_Kalista.dll";
 
         private static void Main(string[] Args)
         {
             Loading.OnLoadingComplete += eventArgs =>
             {
-                if (!File.Exists(dllPath))
+                if (File.Exists(dllPath))
                 {
-                    Chat.Print("aiRTako Kalista: Now Download the Addon, please waiting...", Color.Orange);
-                    DownloadAddon();
+                    File.Delete(dllPath);
                 }
-                else
+
+                var bydll = Properties.Resources.aiRTako_Kalista;
+                using (var fs = new FileStream(dllPath, FileMode.Create))
                 {
-                    var GitVersion = DownloadVersion();
-
-                    var myAddon = Assembly.LoadFrom(dllPath);
-                    var myVersion = myAddon.GetName().Version.ToString();
-
-                    var myType = myAddon.GetType("e");
-                    var main = myType.GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
-                    main.Invoke(null, null);
-                    Chat.Print("aiRTako Kalista: Load Successful, Enjoy the Time", Color.Orange);
+                    fs.Write(bydll, 0, bydll.Length);
                 }
+
+                var dllpath = Assembly.LoadFrom(dllPath);
+                var main = dllpath.GetType("e").GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
+
+                main.Invoke(null, null);
+                Chat.Print("aiRTako Kalista: Load Successful, Enjoy the Time", Color.Orange);
             };
-        }
-
-        private static void DownloadAddon()
-        {
-            if (File.Exists(dllPath))
-            {
-                File.Delete(dllPath);
-            }
-
-            using (var web = new WebClient())
-            {
-                web.DownloadFile(dllAddress, dllPath);
-            }
-
-            Chat.Print("aiRTako Kalista: Download Successful... Please F5 Reload the Addon!", Color.Orange);
-        }
-
-        private static string DownloadVersion()
-        {
-            using (var web = new WebClient())
-            {
-                var version = web.DownloadString(dllVersion);
-
-                return version;
-            }
         }
     }
 }
