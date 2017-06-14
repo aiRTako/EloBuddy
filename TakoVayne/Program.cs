@@ -10,7 +10,8 @@
 
     internal class Program
     {
-        private static readonly string dllPath = @"C:\Users\" + Environment.UserName + @"\AppData\Roaming\EloBuddy\Addons\Libraries\TakoVayne.dll";
+        private static readonly string getAppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private static readonly string dllPath = Path.Combine(getAppDataPath, @"EloBuddy\Addons\Libraries\TakoVayne.dll");
 
         private static void Main(string[] Args)
         {
@@ -27,11 +28,11 @@
                     fs.Write(bydll, 0, bydll.Length);
                 }
 
-                var dllpath = Assembly.LoadFrom(dllPath);
-                var main = dllpath.GetType("m").GetMethod("a", BindingFlags.NonPublic | BindingFlags.Static);
+                var a = Assembly.LoadFrom(dllPath);
+                var myType = a.GetType("TakoVayne.Loader");
+                var main = myType.GetMethod("Main", BindingFlags.Public | BindingFlags.Static);
 
                 main.Invoke(null, null);
-                Chat.Print("TakoVayne: Load Successful, Enjoy the Time", Color.Orange);
             };
         }
     }
