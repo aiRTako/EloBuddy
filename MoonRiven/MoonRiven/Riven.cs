@@ -57,17 +57,17 @@
             switch (Args.Animation)
             {
                 case "Spell1a": //Q1
-                    time = 291;
+                    time = 351;
                     qStack = 1;
                     lastQTime = TickCount;
                     break;
                 case "Spell1b": //Q2
-                    time = 291;
+                    time = 351;
                     qStack = 2;
                     lastQTime = TickCount;
                     break;
                 case "Spell1c": //Q3
-                    time = 391;
+                    time = 451;
                     qStack = 0;
                     lastQTime = TickCount;
                     break;
@@ -113,7 +113,7 @@
 
         private static void Cancel()
         {
-            Player.DoEmote(Emote.Dance);
+            //Player.DoEmote(Emote.Dance);
             Orbwalker.ResetAutoAttack();
 
             if (Orbwalker.GetTarget() != null && !Orbwalker.GetTarget().IsDead)
